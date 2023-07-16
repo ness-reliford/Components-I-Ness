@@ -87,8 +87,80 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'NESS IS GONNA GET A 100K + JOB RIGHT AWAY',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
+  //START W FUNCTION
+function articleMaker(articleObj) {
+
+  //CREATING ELEMENTS
+const articleWrapper = document.createElement("div");
+const articleTitle = document.createElement("h2");
+const articleDate = document.createElement("p");
+const articleParagraphOne = document.createElement("p");
+const articleParagraphTwo = document.createElement("p");
+const articleParagraphThree = document.createElement("p");
+const expandButton = document.createElement('span');
+
+// ADD A CLASS
+articleWrapper.classList.add('article');
+articleDate.classList.add('date');
+expandButton.classList.add('expandButton');
+
+//FORMAT - APPENDING
+articleWrapper.appendChild(articleTitle);
+articleWrapper.appendChild(articleDate);
+articleWrapper.appendChild(articleParagraphOne);
+articleWrapper.appendChild(articleParagraphTwo);
+articleWrapper.appendChild(articleParagraphThree);
+articleWrapper.appendChild(expandButton);
+
+//ADDING TEXT CONTENT
+articleTitle.textContent = articleObj.title;
+articleDate.textContent = articleObj.date;
+articleParagraphOne.textContent = articleObj.firstParagraph;
+articleParagraphTwo.textContent = articleObj.secondParagraph;
+articleParagraphThree.textContent = articleObj.thirdParagraph;
+expandButton.textContent = "+";
+
+//ADDING EVENT LISTENER
+expandButton.addEventListener("click", () => {
+  articleWrapper.classList.toggle("article-open");
+})
+
+//RETURN
+return articleWrapper;
+}
+
+//LOOP THROUGH
+data.forEach(article => {
+  document
+  .querySelector('div.articles')
+  .appendChild(articleMaker(article));
+  /**
+   * same as:
+   * const articleWrapper = document.querySelector("div.articles");
+   * const articleList = articleMaker(article);
+   * articleWrapper.appendChild(articleList);
+   */
+})
+
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
